@@ -10,8 +10,9 @@ This should not be used for production quality websites/DNS but is great for per
 ```
 git clone https://github.com/realrasengan/dnslive-cli
 cd dnslive-cli
-npm install request
+npm install request hsd hs-client
 ```
+Note: hsd and hs-client are not required if you are running manually (assumes you have hsd/hs-client elsewhere)
 
 ### Use
 #### Please note, the zonefile filename must be the same as your domain.  So if your domain is 'jack' then call the zonefile 'jack'
