@@ -1,4 +1,4 @@
-const {NodeClient,WalletClient} = require('hs-client');
+const {WalletClient} = require('hs-client');
 const {Network} = require('hsd');
 const network = Network.get('main');
 
@@ -27,11 +27,10 @@ let argc = process.argv.length;
 
     const client = new WalletClient(walletOptions);
     const wclient = client.wallet(wallet);
-    const nclient = new NodeClient(walletOptions);
 
     if(argc==5)
       wallet=argv[4];
-    result = await nclient.execute('getnameinfo', [ domain ]);
+    result = await client.execute('getnameinfo', [ domain ]);
     if(result && result.owner.hash) {
       result = await wclient.getCoin(result.owner.hash, result.owner.index);
       if(result.address) {
