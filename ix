@@ -1,7 +1,7 @@
-$TTL    300     ; 10 minute TTL; 86400 for 1 day.
+$TTL    300     ; 5 minute TTL; 86400 for 1 day.
 
 @       IN      SOA     ns1.dns.live. root.ix. (
-                     2020031607         ; Serial (just increment each update)
+                     2020031901         ; Serial (just increment each update)
                           21600         ; Refresh
                            3600         ; Retry
                         2419200         ; Expire
@@ -14,6 +14,7 @@ ix.     IN      NS      ns3.dns.live.
 www     IN      A       66.175.213.205
 www2    IN      A       66.175.213.205
 ftp     IN      A       66.175.213.205
+bbs	IN	A	127.0.0.1
 
 www     IN      TXT     "f=https://dns.live/go/rough/"
 www2	IN	TXT	"r=https://github.com/realrasengan/dnslive-cli"

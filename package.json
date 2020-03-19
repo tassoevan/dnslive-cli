@@ -4,6 +4,8 @@
   "description": "dns.live authoritative DNS for Handshake Naming System top level domains (TLDs).",
   "main": "dnslive.js",
   "dependencies": {
+    "hs-client": "0.0.8",
+    "hsd": "^2.1.2",
     "request": "^2.88.2"
   },
   "devDependencies": {},

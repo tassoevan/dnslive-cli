@@ -14,59 +14,49 @@ npm install request
 ```
 
 ### Use
-```
-node dnslive.js zonefile signature-of-zonefile
-```
-
-### Example of full commands to get up and going (assumes [Bob Wallet by Kyokan](https://github.com/kyokan/bob-wallet))
 #### Please note, the zonefile filename must be the same as your domain.  So if your domain is 'jack' then call the zonefile 'jack'
+
 1. Set name resource records in Bob (Domain Manager -> Domain -> Records) to:
 ```
 NS ns1.dns.live.
 NS ns2.dns.live.
 NS ns3.dns.live.
 ```
-2. Copy the address that owns the domain to a temporary textfile/notepad.
-3. Get your API key from Bob Wallet  (Settings -> copy HSD API Key to a temporary textfile/notepad)
-4. Download hs-client
+
+2. Get your API key from Bob Wallet  (Settings -> copy HSD API Key)
+
+3.
 ```
-git clone https://github.com/handshake-org/hs-client
+node dnslive-easy.js zonefile hsd-apikey
 ```
-5. Once downloaded, type
+or
 ```
-cd hs-client
-npm install --production
+node dnslive-easy.js zonefile hsd-apikey walletname
 ```
-6. Then, type:
+The default wallet name is 'allison'.
+
+#### Manual Use
+Alternatively, you can manually generate the signature with the steps below:
 ```
-cd bin
+node dnslive.js zonefile signature-of-zonefile
 ```
-7. Type this in to select the proper wallet in Bob.
+#### Example of full commands to get up and going (assumes [Bob Wallet by Kyokan](https://github.com/kyokan/bob-wallet))
+1. Set name resource records in Bob or hsd with update.
+2. Write down the name of the address that owns the domain.
+3. Get your API key from Bob.
+4. Use hs-client and type this in to select the proper wallet in Bob or your other wallet.
 ```
 ./hsw-rpc selectwallet allison --api-key=APIKEY_FROM_HSD
 ```
-8. Type this command and save the signature result -- you'll need it for the final update, it is a signature.  
+5. Type this command and save the signature result -- you'll need it for the final update, it is a signature.  
 ```
 ./hsw-rpc signmessage ADDRESS_THAT_OWNS_DOMAIN `node /path/to/dnslive-cli/urlencode.js /path/to/dnslive-cli/zonefile` --api-key=<API KEY from step 3>
 ```
-9. Go to the /path/to/dnslive-cli directory
+6. Go to the /path/to/dnslive-cli directory
 ```
 node dnslive.js <zone file> <signature from step 8>
 ```
-10. Done.
-
-### A more straight forward example
-#### Assumes you have 2 folders at the same level, hs-client and dnslive-cli (i.e., installed them in same folder):
-```
-cd hs-client/bin
-./hsw-rpc selectwallet allison --api-key=APIKEY_FROM_HSD
-./hsw-rpc signmessage ADDRESS_THAT_OWNS_DOMAIN `node ../../dnslive-cli/urlencode.js ../../dnslive-cli/DOMAIN` --api-key=APIKEY_FROM_HSD
-```
-> SIGNATUREOUTPUT
-```
-cd ../../dnslive-cli
-node dnslive.js DOMAIN SIGNATUREOUTPUT
-```
+7. Done.
 
 ### Copyright
 Copyright (c) 2020 The Handshake Community
